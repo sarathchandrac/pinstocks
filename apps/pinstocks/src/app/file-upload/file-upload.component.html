@@ -19,10 +19,11 @@
   [options]="options"
   [width]="width"
   [height]="height"
+  (select)="selectElement($event)"
 >
 </google-chart>
 <h2>Stocks data</h2>
-<!-- <pinstocks-stocks-data
+<pinstocks-stocks-data
   *ngIf="tableData"
-  datasource="tableData"
-></pinstocks-stocks-data> -->
+  [dataSource]="tableData"
+></pinstocks-stocks-data>

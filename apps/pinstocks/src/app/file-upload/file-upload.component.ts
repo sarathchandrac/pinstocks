@@ -2,17 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CSVRecord } from '../CSVModel';
 
-export interface PeriodicElement {
-  Name: string;
-  'Sub-Sector': string;
-  'Market Cap': string;
-  'Close Price': string;
-  'PE Ratio': string;
-  '1Y Hist Op. Cash Flow Growth': string;
-  '1Y Historical EPS Growth': string;
-  'Earnings Per Share': string;
-  'Net Change in Cash': string;
-  'perating Cash Flow': string;
+export interface Stock {
+  name: string;
+  subSector: string;
+  cap: string;
+  LTP: string;
+  PE: string;
+  YGwt: string;
+  YEPS: string;
+  EPS: string;
+  NCash: string;
+  OCash: string;
 }
 
 @Component({
@@ -48,6 +48,16 @@ export class FileUploadComponent implements OnInit {
   public height = 400;
   @ViewChild('csvReader') csvReader: any;
 
+  selectElement([event]) {
+    console.log(event.row);
+    this.tableData = this.records.filter((stock: Stock) => {
+      return (
+        Number(stock['PE']) > event.row * 6 &&
+        Number(stock['PE']) < (event.row + 1) * 6
+      );
+    });
+  }
+
   uploadListener($event: any): void {
     let text = [];
     let files = $event.srcElement.files;
@@ -68,7 +78,8 @@ export class FileUploadComponent implements OnInit {
         );
         console.log('data');
         this.data = this.getChartData(this.records);
-        // console.log('data1', this.data);
+        this.tableData = this.records;
+        console.log('data1', this.tableData);
       };
 
       reader.onerror = function() {

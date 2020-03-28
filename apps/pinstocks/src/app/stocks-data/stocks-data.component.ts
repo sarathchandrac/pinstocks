@@ -1,16 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-export interface PeriodicElement {
-  Name: string;
-  'Sub-Sector': string;
-  'Market Cap': string;
-  'Close Price': string;
-  'PE Ratio': string;
-  '1Y Hist Op. Cash Flow Growth': string;
-  '1Y Historical EPS Growth': string;
-  'Earnings Per Share': string;
-  'Net Change in Cash': string;
-  'perating Cash Flow': string;
+export interface Stock {
+  name: string;
+  subSector: string;
+  cap: string;
+  LTP: string;
+  PE: string;
+  YGwt: string;
+  YEPS: string;
+  EPS: string;
+  NCash: string;
+  OCash: string;
 }
 
 @Component({
@@ -19,21 +19,22 @@ export interface PeriodicElement {
   styleUrls: ['./stocks-data.component.css']
 })
 export class StocksDataComponent implements OnInit {
+  @Input() dataSource: Stock[];
+
   constructor() {}
 
   displayedColumns: string[] = [
     'name',
-    'Sub-Sector',
-    'Market Cap',
-    'Close Price',
-    'PE Ratio',
-    '1Y Hist Op. Cash Flow Growth',
-    '1Y Historical EPS Growth',
-    'Earnings Per Share',
-    'Net Change in Cash',
-    'perating Cash Flow'
+    'subSector',
+    'cap',
+    'LTP',
+    'PE',
+    'YGwt',
+    'YEPS',
+    'EPS',
+    'NCash',
+    'OCash'
   ];
-  @Input() dataSource: any;
 
   ngOnInit(): void {}
 }
