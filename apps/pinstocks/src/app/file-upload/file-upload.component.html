@@ -1,0 +1,28 @@
+<p>file-upload works!</p>
+<input
+  type="file"
+  #csvReader
+  name="Upload CSV"
+  id="txtFileUpload"
+  (change)="uploadListener($event)"
+  accept=".csv"
+/>
+<h2>New Chart</h2>
+
+<google-chart
+  *ngIf="data"
+  #chart
+  [title]="title"
+  [type]="type"
+  [data]="data"
+  [columnNames]="columnNames"
+  [options]="options"
+  [width]="width"
+  [height]="height"
+>
+</google-chart>
+<h2>Stocks data</h2>
+<!-- <pinstocks-stocks-data
+  *ngIf="tableData"
+  datasource="tableData"
+></pinstocks-stocks-data> -->
