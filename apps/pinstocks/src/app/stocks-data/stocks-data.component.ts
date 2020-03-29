@@ -20,6 +20,7 @@ export interface Stock {
 })
 export class StocksDataComponent implements OnInit {
   @Input() dataSource: Stock[];
+  
 
   constructor() {}
 

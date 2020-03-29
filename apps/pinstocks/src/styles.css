@@ -1,21 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
+* {
+    box-sizing: border-box;
+}
 body{
     margin: 0;
     padding: 0;
     background-color:#e6e6e6;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
+    min-width: 100%;
   }
   .col-sm-12{
-      display: flex;
-      width: 98%;
+      display: block;
+      width: 100%;
       padding: 15px 1%;
       overflow: hidden;
   }
   .col-sm-6{
-    width: 45.333%;
+    width: 47.999%;
     padding: 15px 1%;
     display: flex;
     border: 1px solid #c6c6c6;
