@@ -49,11 +49,14 @@ export class FileUploadComponent implements OnInit {
   @ViewChild('csvReader') csvReader: any;
 
   selectElement([event]) {
-    console.log(event.row);
     this.tableData = this.records.filter((stock: Stock) => {
       return (
-        Number(stock['PE']) > event.row * 6 &&
-        Number(stock['PE']) < (event.row + 1) * 6
+        (event.row === 0 && Number(stock['PE']) < 6) ||
+        (event.row === 3 && Number(stock['PE']) > event.row * 6) ||
+        (event.row !== 0 &&
+          event.row !== 3 &&
+          Number(stock['PE']) > event.row * 6 &&
+          Number(stock['PE']) < (event.row + 1) * 6)
       );
     });
   }
@@ -117,16 +120,28 @@ export class FileUploadComponent implements OnInit {
     return csvArr;
   }
   getChartData(inputData: CSVRecord[]) {
-    let result = inputData.map((record: CSVRecord) => ({
-      name: record.name,
-      PE: record.PE
-    }));
-    console.log('result', result);
+    let result = inputData
+      .map((record: CSVRecord) => Number(record.PE))
+      .reduce(
+        (a, c) => {
+          let r = c <= 6 ? 1 : c > 18 ? 4 : Math.ceil(c / 6);
+          a[r] = a[r] + 1 || 1;
+          // console.log('count -', c, r, a);
+          return a;
+        },
+        { 1: 0, 2: 0, 3: 0, 4: 0 }
+      );
+    for (const key in result) {
+      if (result.hasOwnProperty(key)) {
+        result[key] = Math.round((100 * result[key]) / inputData.length);
+      }
+    }
+    // console.log('result', result);
     return [
-      ['VeryLow', 45.0],
-      ['Low', 26.8],
-      ['High', 12.8],
-      ['VHigh', 8.5]
+      ['Very Low', result[1]],
+      ['Low', result[2]],
+      ['High', result[3]],
+      ['Very High', result[4]]
     ];
   }
 
