@@ -7,7 +7,6 @@
   (change)="uploadListener($event)"
   accept=".csv"
 />
-<h2>New Chart</h2>
 
 <google-chart
   *ngIf="data"
@@ -22,7 +21,6 @@
   (select)="selectElement($event)"
 >
 </google-chart>
-<h2>Stocks data</h2>
 <pinstocks-stocks-data
   *ngIf="tableData"
   [dataSource]="tableData"
