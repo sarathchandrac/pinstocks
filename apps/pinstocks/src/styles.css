@@ -1,4 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body{
+    margin: 0;
+    padding: 0;
+    background-color:#e6e6e6;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+  }
+  .col-sm-12{
+      display: flex;
+      width: 98%;
+      padding: 15px 1%;
+      overflow: hidden;
+  }
+  .col-sm-6{
+    width: 45.333%;
+    padding: 15px 1%;
+    display: flex;
+    border: 1px solid #c6c6c6;
+    flex-direction: column;
+    float: left;
+    margin: 0 1%;
+    border-radius: 10px;
+    background: #ffffff;
+}

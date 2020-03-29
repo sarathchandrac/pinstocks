@@ -1,7 +1,7 @@
 /*
  * Remove template code below
  */
-:host {
+ /* :host {
   display: block;
   font-family: sans-serif;
   min-width: 300px;
@@ -130,4 +130,10 @@ summary {
   height: 16px;
   width: 16px;
   margin-right: 4px;
+} */
+
+.container-fluid{
+  width: 98%;
+  padding: 1%;
+  margin: 0;
 }
